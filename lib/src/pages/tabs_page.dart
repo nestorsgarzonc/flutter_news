@@ -32,7 +32,9 @@ class _Navigator extends StatelessWidget {
 class _Pages extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final _pageController = Provider.of<_NavigatorModel>(context).pageController;
     return PageView(
+      controller: _pageController,
       physics: NeverScrollableScrollPhysics(),
       children: <Widget>[
         Container(color: Colors.grey),
@@ -44,10 +46,18 @@ class _Pages extends StatelessWidget {
 
 class _NavigatorModel with ChangeNotifier {
   num _actualPage = 0;
+  PageController _pageController = PageController(initialPage: 0);
 
   num get actualPage => this._actualPage;
+  get pageController => this._pageController;
+
   set actualPage(num index) {
-    this._actualPage = index;
+    _actualPage = index;
+    _pageController.animateToPage(
+      index,
+      curve: Curves.ease,
+      duration: Duration(milliseconds: 250),
+    );
     notifyListeners();
   }
 }
