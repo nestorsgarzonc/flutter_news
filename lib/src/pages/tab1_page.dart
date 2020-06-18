@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_news/src/services/news_services.dart';
-import 'package:flutter_news/src/theme/list_notices.dart';
+import 'package:flutter_news/src/widgets/list_notices.dart';
+
 import 'package:provider/provider.dart';
 
 class Tab1Page extends StatelessWidget {
